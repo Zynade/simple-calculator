@@ -54,7 +54,7 @@ numberButtons.forEach(button => {
     button.addEventListener('click', () => {
         appendNumber(button.innerText);
         updateScreen();
-    })  
+    })
 })
 
 operationButtons.forEach(button => {
@@ -68,9 +68,11 @@ operationButtons.forEach(button => {
 equalButton.addEventListener('click', button => {
     calculate();
     // Trim down calculations to 4 decimal digits, if they have more.
-    const decimalDigits = Array.from(currentOperand.toString().split('.'))[1];
-    if (decimalDigits.length > 4){
-        currentOperand = parseFloat(parseFloat(currentOperand).toFixed(4));
+    if (currentOperand.toString().includes('.')) {
+        const decimalDigits = Array.from(currentOperand.toString().split('.'))[1];
+        if (decimalDigits.length > 4) {
+            currentOperand = parseFloat(parseFloat(currentOperand).toFixed(4));
+        }
     }
     currentOperand = currentOperand.toString();
     updateScreen();
