@@ -67,9 +67,10 @@ operationButtons.forEach(button => {
 
 equalButton.addEventListener('click', button => {
     calculate();
-
-    if (currentOperand.toString().split('.')[1].length > 4){
-        currentOperand = parseFloat(currentOperand).toFixed(4);
+    // Trim down calculations to 4 decimal digits, if they have more.
+    const decimalDigits = Array.from(currentOperand.toString().split('.'))[1];
+    if (decimalDigits.length > 4){
+        currentOperand = parseFloat(parseFloat(currentOperand).toFixed(4));
     }
     currentOperand = currentOperand.toString();
     updateScreen();
